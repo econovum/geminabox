@@ -81,7 +81,7 @@ class Geminabox < Sinatra::Base
 
   get '/reindex' do
     reindex(:force_rebuild)
-    redirect url("/")
+    redirect "/"
   end
 
   get '/gems/:gemname' do
@@ -94,7 +94,7 @@ class Geminabox < Sinatra::Base
   delete '/gems/*.gem' do
     File.delete file_path if File.exists? file_path
     reindex(:force_rebuild)
-    redirect url("/")
+    redirect "/"
   end
 
   post '/upload' do
@@ -126,7 +126,7 @@ private
     if api_request?
       "Gem #{gem.name} received and indexed."
     else
-      redirect url("/")
+      redirect "/"
     end
   end
 
